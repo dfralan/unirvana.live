@@ -64,12 +64,12 @@
           function validatePhone() {
             var phone = document.getElementById('phone').value;
             if(phone.length == 0) {
-              alert("Phone number can't be blank") ;//Validation Message
+              alert("El número de teléfono no puede quedar en blanco.") ;//Validation Message
               return false;
             }
 
-            if(!phone.match(/^[0]?[789]\d{9}$/)) {
-             alert("Please enter a correct phone number") ;//Validation Message
+            if(!phone.match(/^\d{10}$/)) {
+             alert("Ingresá un número de teléfono válido. El mismo ha de contener 10 dígitos.") ;//Validation Message
              return false;
            }
 
