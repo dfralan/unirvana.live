@@ -1,3 +1,5 @@
+import API_KEY from "./apikey.js";
+
 const auth = API_KEY;
 const next = document.querySelector(".next");
 const prev = document.querySelector(".prev");
