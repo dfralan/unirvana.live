@@ -1,13 +1,9 @@
-var apikey = config.API_KEY;
-
-const auth = apikey;
+const auth = '563492ad6f91700001000001abc52aa8330a4e6398cad8081918aaec';
 const next = document.querySelector(".next");
 const prev = document.querySelector(".prev");
 const loop = document.querySelector(".loop");
 const input = document.querySelector("input"); 0
 const searchbutton = document.querySelector(".searchbutton");
-console.log(process.env);
-
 let pagenr = 8;
 let search = false;
 let query = "";
