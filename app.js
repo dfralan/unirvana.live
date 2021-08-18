@@ -1,4 +1,4 @@
-const auth = "API_KEY";
+const auth = process.dotenv.API_KEY;
 const next = document.querySelector(".next");
 const prev = document.querySelector(".prev");
 const loop = document.querySelector(".loop");
@@ -7,7 +7,6 @@ const searchbutton = document.querySelector(".searchbutton");
 
 require('dotenv').config();
 
-console.log(process.env);
 
 let pagenr = 8;
 let search = false;
