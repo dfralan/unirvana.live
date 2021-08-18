@@ -4,6 +4,7 @@ const prev = document.querySelector(".prev");
 const loop = document.querySelector(".loop");
 const input = document.querySelector("input"); 0
 const searchbutton = document.querySelector(".searchbutton");
+console.log(process.env);
 
 let pagenr = 8;
 let search = false;
