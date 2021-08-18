@@ -1,6 +1,6 @@
-import API_KEY from "/apikey.js";
+var apikey = config.API_KEY;
 
-const auth = API_KEY;
+const auth = apikey;
 const next = document.querySelector(".next");
 const prev = document.querySelector(".prev");
 const loop = document.querySelector(".loop");
