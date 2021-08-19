@@ -1,4 +1,4 @@
-const auth = process.env.API_KEY;
+const auth = process.env.API_KEY_PEXELS;
 const next = document.querySelector(".next");
 const prev = document.querySelector(".prev");
 const loop = document.querySelector(".loop");
