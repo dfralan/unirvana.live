@@ -1,130 +1,166 @@
-const auth = '563492ad6f91700001000001abc52aa8330a4e6398cad8081918aaec';
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
-const loop = document.querySelector(".loop");
-const input = document.querySelector("input"); 0
-const searchbutton = document.querySelector(".searchbutton");
-let pagenr = 8;
-let search = false;
+let auth = '563492ad6f91700001000001abc52aa8330a4e6398cad8081918aaec';
+
+let searchbutton = document.querySelector(".searchbutton");
+let playPauseButton = document.getElementById('play-pause');
+let playButtonIcon = document.getElementById('playButtonIcon');
+let pauseButtonIcon = document.getElementById('pauseButtonIcon');
+let nextButton = document.querySelector(".next");
+let prevButton = document.querySelector(".prev");
+let loopButton = document.querySelector(".loop");
+let input = document.querySelector("input");
+
+function doPlay() {
+    playButtonIcon.style.opacity = "0";
+    pauseButtonIcon.style.opacity = "1";
+}
+function doPause() {
+    playButtonIcon.style.opacity = "1";
+    pauseButtonIcon.style.opacity = "0";
+}
+
+let videoPlayer = document.getElementById("video-player");
+let source = videoPlayer.querySelector("source");
+let credits = document.querySelector(".credits");
+
+let videos = [];
+let currentIndex = 0;
+let pagenr = 1;
 let query = "";
+let search = false;
+let looped = false;
 
-input.addEventListener("input", (e) => {
-    e.preventDefault();
-    query = e.target.value;
+let progressBar = document.getElementById("progress");
+
+// Actualizar la barra mientras el video se reproduce
+videoPlayer.addEventListener("timeupdate", () => {
+    const percentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+    progressBar.value = percentage || 0;
 });
 
-async function PopularVideos(pagenr) {
-    const data = await fetch(
-        `https://api.pexels.com/videos/popular?per_page=1&page=${pagenr}`,
-        {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                Authorization: auth,
-            },
-        }
-    );
-    const result = await data.json();
-    document.querySelector(".gallery").innerHTML = "";
-    result.videos.forEach((video) => {
-        const pic = document.createElement("div");
-        pic.innerHTML = `<video class="video" autoplay><source src="${video.video_files[0].link}"></video><p>Art by <b>${video.user.name}</b> from <b>Pexels</b></p>`;
-        document.querySelector(".gallery").appendChild(pic);
-    });
-    document.querySelector(".video").addEventListener("ended", termino)
+// Permitir al usuario buscar arrastrando
+progressBar.addEventListener("input", () => {
+    const seekTime = (progressBar.value / 100) * videoPlayer.duration;
+    videoPlayer.currentTime = seekTime;
+});
+
+
+// Función para cargar video actual
+function loadVideo(index) {
+    if (!videos[index]) return;
+    const video = videos[index];
+    source.setAttribute("src", video.video_files[0].link);
+    videoPlayer.load();
+    videoPlayer.play();
+    credits.innerHTML = `Art by <b>${video.user.name}</b> from <b>Pexels</b>`;
 }
 
-async function SearchVideos(query, pagenr) {
-    const data = await fetch(
-        `https://api.pexels.com/videos/search?query=${query}&per_page=1&page=${pagenr}`,
-        {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                Authorization: auth,
-            },
+// Función para obtener videos
+async function fetchVideos(url) {
+    const res = await fetch(url, {
+        headers: {
+            Authorization: auth
         }
-    );
-    const result = await data.json();
-    document.querySelector(".gallery").innerHTML = "";
-    result.videos.forEach((video) => {
-        const pic = document.createElement("div");
-        pic.innerHTML = `<video class="video" autoplay muted><source src="${video.video_files[0].link}"></video><p>Art by <b>${video.user.name}</b> from <b>Pexels</b></p>`;
-        document.querySelector(".gallery").appendChild(pic);
     });
-    arregloBTN();
-}
-function arregloBTN() {
-    const btn = document.getElementById("play-pause");
-    btn.className = ("pause");
+    const data = await res.json();
+    if (data.videos.length === 0) return;
+
+    videos = data.videos;
+    currentIndex = 0;
+    loadVideo(currentIndex);
+
+    // Opcional: guardar en sessionStorage
+    sessionStorage.setItem("cachedVideos", JSON.stringify(videos));
+    sessionStorage.setItem("cachedSearch", search ? query : "popular");
 }
 
+// Siguiente video
+function siguiente() {
+    currentIndex++;
+    if (currentIndex >= videos.length) {
+        pagenr++;
+        if (search) {
+            fetchVideos(`https://api.pexels.com/videos/search?query=${query}&per_page=5&page=${pagenr}`);
+        } else {
+            fetchVideos(`https://api.pexels.com/videos/popular?per_page=5&page=${pagenr}`);
+        }
+    } else {
+        loadVideo(currentIndex);
+    }
+    doPlay();
+}
+
+// Anterior video
+function anterior() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        loadVideo(currentIndex);
+    }
+}
+
+// Botón búsqueda
 searchbutton.addEventListener("click", () => {
-    if (input.value === "") return;
-    clear();
+    query = input.value.trim();
+    if (!query) return;
+
     search = true;
-    SearchVideos(query, pagenr);
-    pagenr++;
+    pagenr = 1;
+    fetchVideos(`https://api.pexels.com/videos/search?query=${query}&per_page=5&page=${pagenr}`);
 });
 
-function clear() {
-    input.value = "";
-    document.querySelector(".gallery").innerHTML = "";
-}
-const siguiente = () => {
-    if (!search) {
-        pagenr++;
-        PopularVideos(pagenr);
+// Botón play/pause
+playPauseButton.addEventListener("click", () => {
+    if (videoPlayer.paused) {
+        doPlay();
+        videoPlayer.play();
     } else {
-        if (query.value === "") return;
-        pagenr++;
-        SearchVideos(query, pagenr);
+        doPause();
+        videoPlayer.pause();
     }
-    arregloBTN();
-}
-next.addEventListener("click", siguiente)
+});
 
-prev.addEventListener("click", () => {
-    if (!search) {
-        pagenr--;
-        PopularVideos(pagenr);
-    } else {
-        if (query.value === "") return;
-        pagenr--;
-        SearchVideos(query, pagenr);
+// Loop toggle
+loopButton.addEventListener("click", () => {
+    looped = !looped;
+    videoPlayer.loop = looped;
+    loopButton.style.fill = looped ? "#FE0060" : "#333";
+});
+
+// Siguiente/anterior botones
+nextButton.addEventListener("click", siguiente);
+prevButton.addEventListener("click", anterior);
+
+// Al terminar video
+videoPlayer.addEventListener("ended", () => {
+    if (!looped) siguiente();
+});
+
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+fullscreenBtn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    // Entrar en fullscreen de toda la página
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
+      document.documentElement.msRequestFullscreen();
     }
-    arregloBTN();
-})
-
-
-PopularVideos(pagenr);
-
-
-var juice = document.querySelector('.orange-juice');
-var btn = document.getElementById('play-pause');
-
-function togglePlayPause() {
-    var video = document.querySelector('.video');
-    if (video.paused) {
-        btn.className = 'pause';
-        video.play();
+    fullscreenBtn.style.fill = "#FE0060";
+  } else {
+    // Salir de fullscreen
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
     }
-    else {
-        btn.className = "play";
-        video.pause();
-    }
-}
+    fullscreenBtn.style.fill = "#333";
+  }
+});
 
-btn.onclick = function () {
-    togglePlayPause();
-};
-var looper = true;
-var termino = () => { siguiente() }
-loop.addEventListener("click", () => {
-    if (looper) { 
-        loop.className = "loop";
-        document.querySelector(".video").removeEventListener("ended", termino) } else {
-        loop.className = "loop active"; document.querySelector(".video").addEventListener("ended", termino)
-    }
-    looper = !looper;
-})
+
+
+// Carga inicial (popular)
+fetchVideos(`https://api.pexels.com/videos/popular?per_page=5&page=${pagenr}`);

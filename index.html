@@ -1,43 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv='cache-control' content='no-cache'>
-      <meta http-equiv='expires' content='0'>
-      <meta http-equiv='pragma' content='no-cache'>
-      <link rel="stylesheet" href="style.css">
-      <title>Unirvana</title>
-      <link rel="icon" href=logo.ico>
-  </head>
-  <body style="background-color:black;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <link rel="stylesheet" href="style.css">
+  <title>Unirvana</title>
+
+  <link rel="icon" href=logo.ico>
+</head>
+
+<body style="background-color:black;">
 
 
-    <h1 class="heading__title">Best video background & wallpaper player, for free.</h1>
-    <header>
-      <div class="logo"></div>      
-      <div class="search">
-        <input type="text" placeholder="Type keywords and press the pink button →"/>
-        <div class="searchbutton"></div>
-      </div>
-    </header>
-    <footer>
-      <div class="player">
-        <div class="orange-bar">
-          <div class="orange-juice"></div>
-        </div>
-        <div class="prev">&#8249;</div>
-        <button id="play-pause"></button>
-        <div class="next">&#8250;</div>
-        <div class="loop"><b>LOOP</b></div>
-      </div>
-    </footer>
-    <div class="gallery">
-      <img class="logobackground">
-      <video class="video" autoplay loop ><source src=""></source></video><p></p>
+  <h1 class="heading__title">Best video background & wallpaper player, for free.</h1>
+  <header>
+    <div class="logo"></div>
+    <div class="search">
+      <input type="text" placeholder="Type keywords and press the pink button →" />
+      <div class="searchbutton"></div>
     </div>
+  </header>
+  <footer class="w-full flex flex-col bottom-0 left-0 group h-[240px] fixed items-center justify-center translate-y-[80%] hover:translate-y-[0%] transition-all gap-2">
     
-    <script src="./app.js"></script>
-  </body>
+    <p class="text-gray-300/60 flex -translate-y-[40px] transition-all flex-col gap-0 items-center justify-center">
+      <span class="w-6 h-6 fill-gray-300/60 group-hover:opacity-0 transition-all">
+        <svg class="w-6 h-6 fill-gray-300/60" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-642 316-478q-11 11-25 10.5T266-479q-11-11-11-25.5t11-25.5l189-189q11-11 25-11t25 11l190 190q11 11 11 25t-11 25q-11 11-25.5 11T644-479L480-642Z"/></svg>
+      </span>
+      <span class="credits"></span>
+    </p>
+    
+    <div style="padding: 14px;" class="shadow flex flex-col gap-2 p-5 w-fit scale-0 group-hover:scale-100 group-hover:opacity-100 transition-all bg-black h-fit rounded-xl items-center justify-center">
+      
+      
+
+      <div class="flex w-full flex-row justify-between items-center fill-[#FE0060]">
+        <button class="prev cursor-pointer">
+          <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M240-276v-408q0-15.3 10.29-25.65Q260.58-720 275.79-720t25.71 10.35Q312-699.3 312-684v408q0 15.3-10.29 25.65Q291.42-240 276.21-240t-25.71-10.35Q240-260.7 240-276Zm425-24L431-450q-8-5.44-12-13.15t-4-16.78q0-9.07 4-16.83 4-7.76 12-13.24l234-150q5-3 9.5-4.5t9.06-1.5q14.57 0 25.51 9.98Q720-646.04 720-629.71v299.38Q720-314 709.07-304q-10.94 10-25.51 10-4.56 0-9.06-1.5-4.5-1.5-9.5-4.5Zm-17-180Zm0 84v-168l-131 84 131 84Z"/></svg>
+        </button>
+
+        <button id="play-pause" class="relative w-10 h-10 cursor-pointer">
+            <svg id="playButtonIcon" class="absolute transition-all top-0 left-0 w-10 h-10 opacity-0" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M336-282.24v-395.52Q336-694 346.93-704t25.5-10q4.55 0 9.56 1.5 5.01 1.5 9.69 4.37L697-510q8 5.32 12.5 13.31 4.5 7.98 4.5 16.85 0 8.87-4.5 16.86Q705-455 697-450L391.67-251.75q-4.68 2.88-9.84 4.31Q376.68-246 372-246q-14.4 0-25.2-10-10.8-10-10.8-26.24ZM409-481Zm-1 133 204-132-204-132v264Z"/></svg>
+            <svg id="pauseButtonIcon" class="absolute transition-all top-0 left-0 w-10 h-10 opacity-100" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M600-192q-29.7 0-50.85-21.15Q528-234.3 528-264v-432q0-29.7 21.15-50.85Q570.3-768 600-768h96q29.7 0 50.85 21.15Q768-725.7 768-696v432q0 29.7-21.15 50.85Q725.7-192 696-192h-96Zm-336 0q-29.7 0-50.85-21.15Q192-234.3 192-264v-432q0-29.7 21.15-50.85Q234.3-768 264-768h96q29.7 0 50.85 21.15Q432-725.7 432-696v432q0 29.7-21.15 50.85Q389.7-192 360-192h-96Zm336-72h96v-432h-96v432Zm-336 0h96v-432h-96v432Zm0-432v432-432Zm336 0v432-432Z"/></svg>
+        </button>
+
+        <div class="next cursor-pointer">
+          <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M648-276v-408q0-15.3 10.29-25.65Q668.58-720 683.79-720t25.71 10.35Q720-699.3 720-684v408q0 15.3-10.29 25.65Q699.42-240 684.21-240t-25.71-10.35Q648-260.7 648-276Zm-408-54.29v-299.38Q240-646 250.93-656q10.94-10 25.51-10 4.56 0 9.06 1.5 4.5 1.5 9.5 4.5l234 150q8 5.44 12 13.15t4 16.78q0 9.07-4 16.83-4 7.76-12 13.24L295-300q-5 3-9.5 4.5t-9.06 1.5q-14.57 0-25.51-9.98Q240-313.96 240-330.29ZM312-480Zm0 84 131-84-131-84v168Z"/></svg>
+        </div>
+      </div>
+      
+      <progress class="rounded-xl overflow-hidden w-fit bg-green-300 p-0 m-0 h-[6px] flex items-center justify-center" type="range" id="progress" value="0" min="0" max="100">
+      </progress>
+
+      <div class="flex w-full flex-row justify-between items-center">
+        <button class="loop fill-[#333] relative w-10 h-10 cursor-pointer">
+          <svg class="relative w-10 h-10 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m282-204 31.78 31.78Q325-161 325-146.5q0 14.5-10.52 25.5-11.48 11-25.98 11t-25.45-10.91l-94.01-93.64q-5.48-5.45-7.76-11.81Q159-232.73 159-240q0-7.27 2.28-13.64 2.28-6.36 7.76-11.81l94.01-93.64Q274-370 288.5-370t25.98 11Q325-348 325-333.5t-11.22 25.72L282-276h414v-120q0-15.3 10.29-25.65Q716.58-432 731.79-432t25.71 10.35Q768-411.3 768-396v120q0 29.7-21.15 50.85Q725.7-204 696-204H282Zm396-480H264v120q0 15.3-10.29 25.65Q243.42-528 228.21-528t-25.71-10.35Q192-548.7 192-564v-120q0-29.7 21.15-50.85Q234.3-756 264-756h414l-31.78-31.78Q635-799 635-813.5q0-14.5 10.52-25.5 11.48-11 25.98-11t25.45 10.91l94.01 93.64q5.48 5.45 7.76 11.81Q801-727.27 801-720q0 7.27-2.28 13.64-2.28 6.36-7.76 11.81l-94.01 93.64Q686-590 672-590.5T646.52-602Q636-613 636-627.5t10.96-25.46L678-684Z"/></svg>
+        </button>
+        <button id="fullscreen-btn" class="fill-[#333] relative w-10 h-10 cursor-pointer">
+            <svg class="absolute transition-all top-0 left-0 w-10 h-10 opacity-100" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M216-216h84q15.3 0 25.65 10.29Q336-195.42 336-180.21t-10.35 25.71Q315.3-144 300-144H180q-15.3 0-25.65-10.35Q144-164.7 144-180v-120q0-15.3 10.29-25.65Q164.58-336 179.79-336t25.71 10.35Q216-315.3 216-300v84Zm528 0v-84q0-15.3 10.29-25.65Q764.58-336 779.79-336t25.71 10.35Q816-315.3 816-300v120q0 15.3-10.35 25.65Q795.3-144 780-144H660q-15.3 0-25.65-10.29Q624-164.58 624-179.79t10.35-25.71Q644.7-216 660-216h84ZM216-744v84q0 15.3-10.29 25.65Q195.42-624 180.21-624t-25.71-10.35Q144-644.7 144-660v-120q0-15.3 10.35-25.65Q164.7-816 180-816h120q15.3 0 25.65 10.29Q336-795.42 336-780.21t-10.35 25.71Q315.3-744 300-744h-84Zm528 0h-84q-15.3 0-25.65-10.29Q624-764.58 624-779.79t10.35-25.71Q644.7-816 660-816h120q15.3 0 25.65 10.35Q816-795.3 816-780v120q0 15.3-10.29 25.65Q795.42-624 780.21-624t-25.71-10.35Q744-644.7 744-660v-84Z"/></svg>
+        </button>
+
+      </div>
+    </div>
+  </footer>
+  <div class="gallery">
+    <img class="logobackground">
+    <video id="video-player" class="video" autoplay muted>
+      <source src="">
+      </source>
+    </video>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
 </html>
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

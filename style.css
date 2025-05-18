@@ -118,181 +118,6 @@ header .toggle:hover
     width: 38px;        
 }
 
-footer
-{ 
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 170px;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transform: translateY(80%);
-    transition: 0.4s;
-}
-
-footer:hover 
-{
-    transform: translateY(0);
-}
-
-.spotify 
-{
-    position: fixed;
-    left: 0;
-    width: 500px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transform: translateX(-80%);
-    transition: 0.4s;
-}
-
-.spotify:hover 
-{
-    transform: translateX(0);
-    width: 100px;
-}
-
-.spotify iframe 
-{
-    margin-left: 50px;
-}
-
-.player
-{
-    position: relative;
-    margin: auto;
-    background-color: black;
-    display: flex;
-    border-radius: 10px;
-    z-index: -1;
-    width: 160px;
-    height: 80px;
-}
-
-.prev
-{    
-    align-content: center;
-    position: absolute;
-    left: 0;
-    margin-left: 10px;
-    margin-top: 5px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    transition: 0.3s;color: #333333;
-    font-size: xx-large;
-    text-align: center;
-    
-}
-
-.prev:hover 
-{
-    filter: drop-shadow( 0px 0px 8px #686868);
-}
-
-#play-pause
-{
-    margin: auto;
-    border: none;
-    outline: none;
-    margin-left: 60px;
-    background-color: transparent;
-    margin-top: 5px;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    transition: 0.3s;
-    background-image: url("data:image/svg+xml,%3C!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In --%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:a='http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 40 40' style='enable-background:new 0 0 40 40;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;%7D .st1%7Bfill:%23FE0060;%7D%0A%3C/style%3E%3Cdefs%3E%3C/defs%3E%3Cg%3E%3Crect class='st0' width='40' height='40'/%3E%3Cg%3E%3Crect x='14.4' y='12.9' class='st1' width='3.2' height='14.2'/%3E%3Crect x='22.4' y='12.9' class='st1' width='3.2' height='14.2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-}
-
-#play-pause:hover 
-{
-    filter: drop-shadow( 0px 0px 5px #FE0060);
-}
-
-#play-pause.play
-{
-    background-image: url("data:image/svg+xml,%3C!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In --%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:a='http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 40 40' style='enable-background:new 0 0 40 40;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;%7D .st1%7Bfill:%23FE0060;%7D%0A%3C/style%3E%3Cdefs%3E%3C/defs%3E%3Cg%3E%3Crect class='st0' width='40' height='40'/%3E%3Cpolygon class='st1' points='28.5,20 16.1,12.8 16.1,27.2 '/%3E%3C/g%3E%3C/svg%3E%0A");
-}
-
-#play-pause.pause
-{
-    background-image: url("data:image/svg+xml,%3C!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In --%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:a='http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/' x='0px' y='0px' width='40px' height='40px' viewBox='0 0 40 40' style='enable-background:new 0 0 40 40;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:none;%7D .st1%7Bfill:%23FE0060;%7D%0A%3C/style%3E%3Cdefs%3E%3C/defs%3E%3Cg%3E%3Crect class='st0' width='40' height='40'/%3E%3Cg%3E%3Crect x='14.4' y='12.9' class='st1' width='3.2' height='14.2'/%3E%3Crect x='22.4' y='12.9' class='st1' width='3.2' height='14.2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
-}
-
-.next
-{    
-    right: 0;
-    margin-right: 10px;
-    margin-top: 5px;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    transition: 0.3s;color: #333333;
-    font-size: xx-large;
-    text-align: center;
-}
-
-.next:hover 
-{
-    filter: drop-shadow( 0px 0px 8px #686868);
-}
-
-.orange-bar {
-    height: 5px;
-    width: 140px;
-    background-color: #333333;
-    margin-left: 10px;
-    border-radius: 1vh;
-    margin-top: 48px;
-}
-
-.orange-juice
-{
-    height: 5px;
-    background-color: #FE0060;
-    border-radius: 1vh;
-    transition: 0.3s;
-}
-
-.orange-juice:hover 
-{
-    filter: drop-shadow( 0px 0px 5px #FE0060);
-}
-
-.loop
-{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 8px;
-    margin-left: 10px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    color: #333333;
-    font-size: 9pt;
-    transition: 0.3s;
-}
-
-.loop:hover 
-{
-    filter: drop-shadow( 0px 0px 8px #686868);
-}
-
-.loop.active 
-{
-    color: #FE0060;
-}
-
 .gallery 
 {
     position: absolute;
@@ -333,18 +158,6 @@ footer:hover
     background-color: transparent;    
 }
 
-p
-{    
-    position: fixed;
-    font-size: small;
-    opacity: 50%;
-    bottom: 0;
-    right: 0;
-    margin-right: 40px;
-    margin-bottom: 45px;
-    text-align: right;
-    color: white;
-}
 
 @media (max-width: 991px)
 {
@@ -366,4 +179,29 @@ p
     }
     
 
+}
+
+
+progress[value] {
+  --color: #FE0060; /* the progress color */
+  --background: #333; /* the background color */
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 200px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  background: var(--background);
+}
+progress[value]::-webkit-progress-bar {
+  background: var(--background);
+}
+progress[value]::-webkit-progress-value {
+  background: var(--color);
+}
+progress[value]::-moz-progress-bar {
+  border-radius: 10em;
+  background: var(--color);
 }
